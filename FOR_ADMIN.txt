@@ -1,0 +1,16 @@
+E-COMMERCE PROJECT
+-----------------------------------
+WS1805005 MANZI GHILAIN
+-------------------------------
+
+DATABASE NAME: gallanshop
+
+-FIRST, CREATE A DATABASE CALLED "gallanshop" in database System (e.g phpmyadmin)
+-THEN, import the file "gallanshop.sql" found in the folder "database".
+
+--------------------
+FOR ADMIN PANEL
+-----------------------
+ADMIN USERNAME: admin
+ADMIN PASSWORD: admin123
+-------------------------------

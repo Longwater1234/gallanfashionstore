@@ -1,0 +1,24 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	margin-top: 100px;
+	align-content: center;
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+	background-color: dimgray;
+}
+.button {
+	background-color: chocolate;
+	color: #fff;
+	font-family: "Arial Black", "sans-serif";
+	height: 40px;
+	width: 150px;
+}
+.boxy {
+	margin: auto;
+	text-align: center;
+	justify-content: center;
+	width: 500px;
+	border: 10px solid #000000;
+	padding: 20px;
+	background: lightyellow;
+}

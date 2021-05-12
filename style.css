@@ -1,0 +1,168 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+	padding: 0;
+	margin: 0;
+}
+body {
+	background: url(background.png);
+	background-size: auto;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: top;
+	margin-top: 150px;
+	font-family: Helvetica, Arial, "sans-serif";
+}
+nav {
+	text-align: center;
+	font-family: Helvetica, Arial, "sans-serif";
+	position: sticky;
+}
+nav a {
+	font-size: 18px;
+	text-decoration: none;
+	color: #4e45d1;
+	transition: 0.3s;
+	padding: 20px;
+}
+nav a:hover {
+	color: red;
+	font-size: 20px;
+	text-decoration: 3px underline;
+	text-decoration-color: black;
+	padding: 15px;
+	border-radius: 10px;
+}
+nav .cart-icon{
+	position: sticky;
+}
+body .h-auto {
+	margin-top: 50px;
+	padding-bottom: 20px;
+	text-align: center;
+}
+.h-orangee {
+	margin-top: 100px;
+	color: darkgoldenrod;
+	text-align: center;
+}
+.form {
+	margin: auto;
+	text-align: center;
+	justify-content: center;
+	width: 500px;
+	border: 2px solid #000000;
+	padding: 20px; /*	margin: 10px;*/
+}
+.msg {
+	text-align: center;
+	color: #f00;
+	text-emphasis: bold;
+	background-color: palegoldenrod;
+}
+.button {
+	background-color: #f00;
+	color: #fff;
+	height: 40px;
+	width: 150px;
+	border-radius: 20px;
+}
+.addtocartbtn {
+	background-color: chocolate;
+	color: #fff;
+	font-family: "Arial Black", "sans-serif";
+	height: 40px;
+	width: 150px;
+	border-radius: 20px;
+}
+
+.button-large {
+	background-color: chocolate;
+	color: #fff;
+	font-family: "Arial Black", "sans-serif";
+	height: 40px;
+	width: 200px;
+}
+.button-green {
+	background-color: green;
+	color: #FFFFFF;
+	font-family: "Arial Black", "sans-serif";
+	height: 40px;
+	width: 200px;
+}
+.button-large-div {
+	align-content: center;
+	text-align: center;
+
+}
+.middle-btn {
+	height: 40px;
+	width: 100px;
+}
+.table{
+	margin: auto;
+}
+.table th{
+	background-color: goldenrod;
+	color: aliceblue;
+}
+.wow {
+	text-align: right;
+	margin-right: 100px;
+	font-size: 14px;
+	font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
+}
+.category {
+	margin-left: 240px;
+	margin-top: 40px;
+	text-align: center;
+}
+.cat1 {
+	display: flex;
+}
+.cat1 a {
+	font-size: 18px;
+	text-decoration: none;
+	color: #574702;
+}
+.cat1 a:hover {
+	font-size: 25px;
+	text-decoration: underline;
+	text-decoration-style: dotted;
+}
+
+.container-grid{
+	margin-left: 10%;
+	display: flex;
+	flex-wrap: wrap;
+}
+.item-box {
+	text-align: center;
+	justify-content: center;
+	width: 250px;
+	border: 2px solid #000000;
+	padding: 20px;
+	
+}
+.container-down{
+	margin-left: 10%;
+	display:flex;
+	flex-wrap: wrap;
+}
+.item-box-row {
+	text-align: center;
+	flex-direction: row;
+	justify-content: center;
+	width: 250px;
+	border: 2px solid #000000;
+	padding: 20px;
+	
+}
+.floaty{
+	display: block;
+	justify-content: space-around;
+}
+
+/* ------------- PAYMENT STUFF! EXTERNAL ------------------------*/
+
+
