@@ -1,6 +1,7 @@
 E-COMMERCE PROJECT
 -----------------------------------
-WS1805005 MANZI GHILAIN
+by MANZI GHILAIN & DAVIS T
+DEC 2020
 -------------------------------
 
 DATABASE NAME: gallanshop
