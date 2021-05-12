@@ -27,7 +27,6 @@ include('connections/localhost.php');
 	$result = mysqli_query($localhost, $query) or die(mysqli_error($localhost));
 	
 
-	
 	$count = mysqli_num_rows($result);
 	if ($count == 0) exit('<p align="center"> Your Cart is Empty</p>'); 
 	
