@@ -59,7 +59,7 @@ CREATE TABLE `customers` (
   `customerID` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` longtext NOT NULL,
+  `password` varchar(100) NOT NULL,
   `phone` varchar(15) NOT NULL,
   `address` varchar(100) DEFAULT NULL,
   `datejoined` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
