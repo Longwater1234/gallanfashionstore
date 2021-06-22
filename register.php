@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-include( 'connections/localhost.php' );
+include('connections/localhost.php');
 
 ?>
 
@@ -9,9 +9,9 @@ include( 'connections/localhost.php' );
 <!doctype html>
 <html lang="en">
 
-<?php include( "includes/header.php" ); ?>
+<?php include("includes/header.php"); ?>
 
-<?php include( "includes/navbar.php" ); ?>
+<?php include("includes/navbar.php"); ?>
 
 <body>
 	<h1 class="h-auto" align="center">Create Account</h1>
@@ -54,69 +54,68 @@ include( 'connections/localhost.php' );
 	<div class="msg">
 		<?php
 		// this code below for when someone presses the REGISTER button
-		
-		function cleanInput($data){
+
+		function cleanInput($data)
+		{
 			//this to clean and sanitize our input data
 			$data = strip_tags(trim($data));
 			$data = htmlspecialchars($data);
 			$data = stripslashes($data);
-			return($data);
+			return ($data);
 		}
 
-		if ( isset( $_POST[ 'register' ] ) ) {
+		if (isset($_POST['register'])) {
 			global $localhost;
 
-			$name = mysqli_real_escape_string( $localhost, $_POST[ 'name' ] );
-			$phone =  mysqli_real_escape_string( $localhost, $_POST[ 'phone' ] );
-			$email =  mysqli_real_escape_string( $localhost, $_POST[ 'email' ] );
-			$password = mysqli_real_escape_string( $localhost, $_POST[ 'password' ] );
-			$confirmPass = mysqli_real_escape_string( $localhost, $_POST[ 'confirmPass' ] );
-			
+			$name = mysqli_real_escape_string($localhost, $_POST['name']);
+			$phone =  mysqli_real_escape_string($localhost, $_POST['phone']);
+			$email =  mysqli_real_escape_string($localhost, $_POST['email']);
+			$password = mysqli_real_escape_string($localhost, $_POST['password']);
+			$confirmPass = mysqli_real_escape_string($localhost, $_POST['confirmPass']);
+
 			$name = cleanInput($name);
 			$phone = cleanInput($phone);
 			$email = cleanInput($email);
 			$password = cleanInput($password);
-			
+
 			filter_var($email, FILTER_VALIDATE_EMAIL) or die("Email not valid");
-			if(strlen($password) < 6) exit("Password requires 6 or more characters");
-			
+			if (strlen($password) < 8) exit("Password requires 6 or more characters");
 
-
-			if ( !( $password == $confirmPass ) ) {
+			if ($password !== $confirmPass) {
 				//this means passwords do not match
-				echo "Passwords do not match";
+				exit("Passwords do not match");
+			}
+
+			$s = "SELECT COUNT(*) from `customers` where email= '$email'";
+			$result = mysqli_query($localhost, $s);
+			$num = mysqli_fetch_row($result)[0];
+		
+ 			if ($num > 0) {
+				// this means the user already exists
+				exit("User already exists!");
 			} else {
+				$hashedpassword = password_hash($password, PASSWORD_DEFAULT);
+				$reg = "INSERT INTO `customers`(`name`, `email`, `password`, `phone`, `datejoined`) 
+						VALUES ('$name','$email','$hashedpassword', '$phone', NOW())";
 
-				$s = "SELECT * from `customers` where email= '$email'";
-				$result = mysqli_query( $localhost, $s );
-				$num = mysqli_num_rows( $result );
+				if (mysqli_query($localhost, $reg)) {
+					$_SESSION['valid'] = true;
+					$_SESSION['name'] = $name;
+					$_SESSION['email'] = $email;
 
-				if ( $num > 0 ) {
-					// this means the user already exists
-					echo "User already exists!";
+
+					echo '<p style="color: green"> Registration successful! Redirecting you... </p>';
+					//header('Refresh: 1; URL = myaccount.php');
 				} else {
-					$hashedpassword = sha1( $password ); 
-					$reg = "INSERT INTO `customers`(`name`, `email`, `password`, `phone`, `datejoined`) VALUES ('$name','$email','$hashedpassword', '$phone', NOW())";
-
-					if ( mysqli_query( $localhost, $reg ) ) {
-						$_SESSION[ 'valid' ] = true;
-						$_SESSION[ 'timeout' ] = time();
-						$_SESSION[ 'name' ] = $name;
-						$_SESSION[ 'email' ] = $email;
-						
-						
-						echo '<p style="color: green"> Registration successful! Redirecting you... </p>';
-						header( 'Refresh: 1; URL = myaccount.php' );
-						
-					} else {
-						echo "Sign up failed" . mysqli_error( $localhost );
-					}
+					echo "Sign up failed" . mysqli_error($localhost);
 				}
 			}
 		}
+ 
 		?>
 	</div>
-	
+
 	<?php include("includes/footer.php"); ?>
 </body>
+
 </html>

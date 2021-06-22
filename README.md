@@ -1,14 +1,19 @@
 # gallanfashionstore
-Simple PHP Fashion e-commerce website project. With minimal CSS.
 
-DATABASE NAME: gallanshop
+Simple PHP Fashion e-commerce website project with Admin Panel. With very minimal CSS. Beginner friendly.
 
-- FIRST, CREATE A DATABASE CALLED "gallanshop" in MYSQL
-- THEN, import the file `gallanshop.sql` found in the folder "database".
+DEFAULT DATABASE NAME: **gallanshop**
 
+## Quick Start:
+
+-   FIRST, CREATE A DATABASE CALLED "`gallanshop`" in MYSQL. (can rename it however you wish.)
+-   THEN, import to the DB the file `gallanshop.sql` found inside the folder `database`.
+-   Change connection settings in `/connections/localhost.php` to include your MySQL password if applicable.
 
 ### FOR ADMIN PANEL
+
 **Defaults:**
-- (These are hardcoded. Can be changed in `/admin/adminlogin.php` or stored in database)
-- ADMIN USERNAME: `admin`
-- ADMIN PASS WORD: `admin123`
+
+-   (These are hardcoded. Can be changed in `/admin/adminlogin.php` OR stored in database [ RECOMMENDED ] in _Admin_ table)
+-   ADMIN USERNAME: `admin`
+-   ADMIN PASS WORD: `admin123`

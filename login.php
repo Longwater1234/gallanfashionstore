@@ -33,6 +33,7 @@ include('connections/localhost.php');
 		<p>Dont have an account? <a href="register.php">Register here</a>.</p>
 	</div>
 	<!-- end of form-->
+	
 	<div class="msg">
 		<?php
 		if (isset($_POST['login'])) {
@@ -49,22 +50,18 @@ include('connections/localhost.php');
 			filter_var($email, FILTER_VALIDATE_EMAIL) or die("Email not valid");
 
 
-			$hashedpassword = sha1($password); //convert the password to sha1
-
-			$query = "SELECT `email`, `password` FROM `customers` WHERE `email`= '$email' AND `password`='$hashedpassword'";
+			$query = "SELECT `password` FROM `customers` WHERE `email`= '$email'";
 			$query_run = mysqli_query($localhost, $query);
-			$result = mysqli_num_rows($query_run);
-
-			if ($result == 0) {
-				echo "Wrong email or password!...Try again.";
+			$result = mysqli_fetch_assoc($query_run)["password"] or exit("User does not exist");
+			
+			if (!password_verify($password, $result)) {
+				exit("Wrong email or password!...Try again.");
 			} else {
 				$getname = "SELECT `name` FROM `customers` WHERE `email`='$email'";
 				$query_two = mysqli_query($localhost, $getname);
-				$row = mysqli_fetch_array($query_two, 1);
-				$name = $row['name'];
+				$name = mysqli_fetch_assoc($query_two)["name"];
 
 				$_SESSION['valid'] = true;
-				$_SESSION['timeout'] = time();
 				$_SESSION['email'] = $email;
 				$_SESSION['name'] = $name;
 
