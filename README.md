@@ -17,3 +17,5 @@ DEFAULT DATABASE NAME: **gallanshop**
 -   (These are hardcoded. Can be changed in `/admin/adminlogin.php` OR stored in database [ RECOMMENDED ] in _Admin_ table)
 -   ADMIN USERNAME: `admin`
 -   ADMIN PASS WORD: `admin123`
+-   Login admin panel at http://localhost/admin/adminlogin.php to upload new products.
+-   Sample product images included in folder `/uploads`
