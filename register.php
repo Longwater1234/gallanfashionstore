@@ -79,7 +79,7 @@ include('connections/localhost.php');
 			$password = cleanInput($password);
 
 			filter_var($email, FILTER_VALIDATE_EMAIL) or die("Email not valid");
-			if (strlen($password) < 8) exit("Password requires 6 or more characters");
+			if (strlen($password) < 8) exit("Password requires 8 or more characters");
 
 			if ($password !== $confirmPass) {
 				//this means passwords do not match
