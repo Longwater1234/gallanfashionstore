@@ -13,18 +13,18 @@ include('connections/localhost.php');
 <body>
 	<h2 class="h-auto"> Product List</h2>
 	<?php
-	global $localhost;
+	global $conn;
 	if (!isset($_GET['category']) || empty(trim($_GET['category']))) {
 		header("location: categories.php");
 	} else {
 
 		$category = htmlspecialchars(stripslashes(strip_tags($_GET['category'])));
-		$category = mysqli_real_escape_string($localhost, $category);
+		$category = mysqli_real_escape_string($conn, $category);
 		
 		$_SESSION['category'] = $category; // for later use.
 
 		$query = "SELECT * FROM `products` WHERE category = '$category'";
-		$result = mysqli_query($localhost, $query) or die(mysqli_error($localhost));
+		$result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
 		$count = mysqli_num_rows($result);
 		if ($count == 0) exit("No Products Found of this Category."); ?>

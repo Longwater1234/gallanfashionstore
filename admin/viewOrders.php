@@ -33,7 +33,7 @@ include( '../connections/localhost.php' );
     . "FROM `orders` \n"
     . "INNER JOIN `products` ON orders.product_id = products.productID \n"
 	. "ORDER BY `date_added` DESC";
-	$result = mysqli_query($localhost, $query) or die(mysqli_error($localhost));
+	$result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 	
 	$count = mysqli_num_rows($result);
 	if ($count == 0) exit('<p align="center"> No Orders Placed Yet! </p>'); 

@@ -17,20 +17,23 @@ session_start();
 	<div class="boxy">
 		<?php
 		$msg = '';
-		
 
-		if ( isset( $_POST[ 'login' ] ) && !empty( $_POST[ 'username' ] ) &&
-			!empty( $_POST[ 'password' ] ) ) {
 
-			if ( $_POST[ 'username' ] == 'admin' &&
-				$_POST[ 'password' ] == 'admin123' ) {
-				$_SESSION[ 'valid' ] = true;
-				$_SESSION[ 'admin' ] = 'admin';
+		if (
+			isset($_POST['login']) && !empty($_POST['username']) &&
+			!empty($_POST['password'])
+		) {
 
-				
+			if (
+				$_POST['username'] == 'admin' &&
+				$_POST['password'] == 'admin123'
+			) {
+				$_SESSION['valid'] = true;
+				$_SESSION['admin'] = 'admin';
+
+
 				//Access granted! take me to Admin Dashboard.
 				header('location: vieworders.php');
-				
 			} else {
 				$msg = '<p style="color: red">Wrong username or password, Try Again!</p>';
 			}
@@ -61,4 +64,5 @@ session_start();
 
 	</div>
 </body>
+
 </html>

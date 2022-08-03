@@ -37,10 +37,10 @@ include('connections/localhost.php');
 	<div class="msg">
 		<?php
 		if (isset($_POST['login'])) {
-			global $localhost;
+			global $conn;
 
-			$email = trim(mysqli_real_escape_string($localhost, $_POST['email']));
-			$password = trim(mysqli_real_escape_string($localhost, $_POST['password']));
+			$email = trim(mysqli_real_escape_string($conn, $_POST['email']));
+			$password = trim(mysqli_real_escape_string($conn, $_POST['password']));
 
 			if (empty($email) || empty($password)) {
 				echo "Must fill all fields";
@@ -51,14 +51,14 @@ include('connections/localhost.php');
 
 
 			$query = "SELECT `password` FROM `customers` WHERE `email`= '$email'";
-			$query_run = mysqli_query($localhost, $query);
+			$query_run = mysqli_query($conn, $query);
 			$result = mysqli_fetch_assoc($query_run)["password"] or exit("User does not exist");
 			
 			if (!password_verify($password, $result)) {
 				exit("Wrong email or password!...Try again.");
 			} else {
 				$getname = "SELECT `name` FROM `customers` WHERE `email`='$email'";
-				$query_two = mysqli_query($localhost, $getname);
+				$query_two = mysqli_query($conn, $getname);
 				$name = mysqli_fetch_assoc($query_two)["name"];
 
 				$_SESSION['valid'] = true;

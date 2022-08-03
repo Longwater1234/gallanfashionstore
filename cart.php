@@ -19,12 +19,12 @@ include('connections/localhost.php');
 	<h2 class="h-auto">Your Cart</h2>
 	<?php
 	
-	$customeremail = mysqli_real_escape_string( $localhost, $_SESSION[ 'email' ] );
+	$customeremail = mysqli_real_escape_string( $conn, $_SESSION[ 'email' ] );
 	$query = "SELECT * \n"
     . "FROM `cart` \n"
     . "INNER JOIN `products` ON cart.product_id = products.productID AND cart.customer_email = '$customeremail' \n"
 	. "ORDER BY `date_added` DESC";
-	$result = mysqli_query($localhost, $query) or die(mysqli_error($localhost));
+	$result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 	
 
 	$count = mysqli_num_rows($result);

@@ -1,7 +1,7 @@
 <?php
 ob_start();
 session_start();
-include( 'connections/localhost.php' );
+include('connections/localhost.php');
 ?>
 
 <!doctype html>
@@ -21,47 +21,48 @@ include( 'connections/localhost.php' );
 	<div class="msg">
 		<?php
 		// FOR HANDLING CONTACT FORM
-		function cleanInput( $data ) {
+		function cleanInput($data)
+		{
 			//this PHP function to clean and sanitize our input data
-			$data = strip_tags( trim( $data ) );
-			$data = htmlspecialchars( $data );
-			$data = stripslashes( $data );
-			return ( $data );
+			$data = strip_tags(trim($data));
+			$data = htmlspecialchars($data);
+			$data = stripslashes($data);
+			return ($data);
 		}
 
 
 		if (isset($_POST['submit'])) {
-			global $localhost;
-			
-			$name = cleanInput( $_POST[ 'name' ] );
-			$email = cleanInput( $_POST[ 'email' ] );
-			$message = cleanInput( $_POST[ 'message' ] );
-			
+			global $conn;
 
-			if ( empty($name) || empty($email) || empty($message )) die( "Must fill all fields" );
-			
-			filter_var( $email, FILTER_VALIDATE_EMAIL )or die( "Email not valid. Message not sent! " );
-			
-			if (strlen($message) > 200) exit( "Message must NOT be more than 200 characters" );
+			$name = cleanInput($_POST['name']);
+			$email = cleanInput($_POST['email']);
+			$message = cleanInput($_POST['message']);
 
-				
-			$name = mysqli_real_escape_string( $localhost, $name);
-			$email = mysqli_real_escape_string( $localhost, $email);
-			$message = mysqli_real_escape_string( $localhost, $message);
+
+			if (empty($name) || empty($email) || empty($message)) die("Must fill all fields");
+
+			filter_var($email, FILTER_VALIDATE_EMAIL) or die("Email not valid. Message not sent! ");
+
+			if (strlen($message) > 200) exit("Message must NOT be more than 200 characters");
+
+
+			$name = mysqli_real_escape_string($conn, $name);
+			$email = mysqli_real_escape_string($conn, $email);
+			$message = mysqli_real_escape_string($conn, $message);
 
 			$sendMsg = "INSERT INTO `contactus`( `name`, `email`, `message`, `date_posted`) VALUES ('$name', '$email', '$message', NOW())";
 
-			if ( mysqli_query( $localhost, $sendMsg ) ) {
+			if (mysqli_query($conn, $sendMsg)) {
 				echo "<script>alert('Message Sent!')</script>";
 				echo "<script>window.open('contact.php','_self')</script>";
 			} else
-				echo "Error:" . mysqli_error( $localhost );
+				echo "Error:" . mysqli_error($conn);
 		}
 
 		?>
 	</div>
-	
-<!--	the contact form-->
+
+	<!--	the contact form-->
 	<div class="container">
 		<form id="contact" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
 			<h3>Contact Form</h3>
@@ -83,15 +84,15 @@ include( 'connections/localhost.php' );
 	</div>
 	<br>
 
-	
+
 	<?php include("includes/footer.php"); ?>
 
 	<script type="application/javascript">
 		function countChars() {
 			//for displaying number of characters left for Message
-			var val = document.getElementById( "messageInput" ).value;
+			var val = document.getElementById("messageInput").value;
 			var charCounter = 200 - val.length;
-			document.getElementById( "charLeft" ).innerHTML = charCounter + ' characters left';
+			document.getElementById("charLeft").innerHTML = charCounter + ' characters left';
 
 		}
 	</script>

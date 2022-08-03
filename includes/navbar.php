@@ -13,9 +13,9 @@ include('connections/localhost.php');
 	if (isset($_SESSION['email'])) {
 		// if user is LOGGED IN.
 		// if user is LOGGED IN.
-		$email = mysqli_real_escape_string($localhost,  $_SESSION['email']);
+		$email = mysqli_real_escape_string($conn,  $_SESSION['email']);
 		$query = "SELECT COUNT(*) AS count FROM `cart` WHERE `customer_email`='$email'";
-		$result = mysqli_query($localhost, $query) or die(mysqli_error($localhost));
+		$result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 		$cartCount = (int) mysqli_fetch_assoc($result)["count"];
 
 		echo '<a href="myaccount.php"><strong>My Account</strong></a>';

@@ -55,7 +55,8 @@ include('connections/localhost.php');
 		<?php
 		// this code below for when someone presses the REGISTER button
 
-		function cleanInput($data)
+		/** sanitize input */
+		function cleanInput(string $data)
 		{
 			//this to clean and sanitize our input data
 			$data = strip_tags(trim($data));
@@ -65,13 +66,13 @@ include('connections/localhost.php');
 		}
 
 		if (isset($_POST['register'])) {
-			global $localhost;
+			global $conn;
 
-			$name = mysqli_real_escape_string($localhost, $_POST['name']);
-			$phone =  mysqli_real_escape_string($localhost, $_POST['phone']);
-			$email =  mysqli_real_escape_string($localhost, $_POST['email']);
-			$password = mysqli_real_escape_string($localhost, $_POST['password']);
-			$confirmPass = mysqli_real_escape_string($localhost, $_POST['confirmPass']);
+			$name = mysqli_real_escape_string($conn, $_POST['name']);
+			$phone =  mysqli_real_escape_string($conn, $_POST['phone']);
+			$email =  mysqli_real_escape_string($conn, $_POST['email']);
+			$password = mysqli_real_escape_string($conn, $_POST['password']);
+			$confirmPass = mysqli_real_escape_string($conn, $_POST['confirmPass']);
 
 			$name = cleanInput($name);
 			$phone = cleanInput($phone);
@@ -87,7 +88,7 @@ include('connections/localhost.php');
 			}
 
 			$s = "SELECT COUNT(*) from `customers` where email= '$email'";
-			$result = mysqli_query($localhost, $s);
+			$result = mysqli_query($conn, $s);
 			$num = mysqli_fetch_row($result)[0];
 		
  			if ($num > 0) {
@@ -98,7 +99,7 @@ include('connections/localhost.php');
 				$reg = "INSERT INTO `customers`(`name`, `email`, `password`, `phone`, `datejoined`) 
 						VALUES ('$name','$email','$hashedpassword', '$phone', NOW())";
 
-				if (mysqli_query($localhost, $reg)) {
+				if (mysqli_query($conn, $reg)) {
 					$_SESSION['valid'] = true;
 					$_SESSION['name'] = $name;
 					$_SESSION['email'] = $email;
@@ -107,7 +108,7 @@ include('connections/localhost.php');
 					echo '<p style="color: green"> Registration successful! Redirecting you... </p>';
 					//header('Refresh: 1; URL = myaccount.php');
 				} else {
-					echo "Sign up failed" . mysqli_error($localhost);
+					echo "Sign up failed" . mysqli_error($conn);
 				}
 			}
 		}

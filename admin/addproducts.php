@@ -45,7 +45,7 @@ include('../connections/localhost.php');
 
         <?php
         $query = "SELECT `name` FROM `categories`;";
-        $result = mysqli_query($localhost, $query) or die(mysqli_error($localhost));
+        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
         while ($row = mysqli_fetch_array($result)) {
         ?>
           <option><?= $row['name'] ?></option>
@@ -72,12 +72,12 @@ include('../connections/localhost.php');
   <div class="msg">
     <?php
 
-    global $localhost;
+    global $conn;
     if (isset($_POST['insert'])) {
 
-      $productname = mysqli_real_escape_string($localhost, $_POST['name']);
-      $price = mysqli_real_escape_string($localhost, $_POST['price']);
-      $category = mysqli_real_escape_string($localhost, $_POST['category']);
+      $productname = mysqli_real_escape_string($conn, $_POST['name']);
+      $price = mysqli_real_escape_string($conn, $_POST['price']);
+      $category = mysqli_real_escape_string($conn, $_POST['category']);
 
       $productname = strtoupper(trim($productname)); //converts to UPPER CASE
 
@@ -136,14 +136,14 @@ include('../connections/localhost.php');
         // FINALLY add everything you got into database:
         $insert_product = "INSERT INTO `products`(`productname`, `price`, `category`, `product_image`) VALUES ( ?, ?, ?, ?)";
 
-        if ($stmt = $localhost->prepare($insert_product)) {
+        if ($stmt = $conn->prepare($insert_product)) {
           //all is good, proceed.
           $stmt->bind_param("siss", $productname, $price, $category, $newFileName);
           $stmt->execute();
           echo "<script>alert('Product added successfully!')</script>";
           echo "<script>window.open('addproducts.php','_self')</script>";
         } else {
-          echo "Upload failed" . mysqli_error($localhost);
+          echo "Upload failed " . mysqli_error($conn);
         }
       }
     }
@@ -156,10 +156,10 @@ include('../connections/localhost.php');
   <div class="listproducts">
     <?php
 
-    global $localhost;
+    global $conn;
     //find out how many products in DB
     $sql = "SELECT COUNT(*) as count from `products`";
-    $result = mysqli_query($localhost, $sql) or die(mysqli_error($localhost));
+    $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
     $totalcount = (int) mysqli_fetch_assoc($result)["count"];
 
     //decide how many items to show per page.
@@ -192,7 +192,7 @@ include('../connections/localhost.php');
      // retrieve results from using LIMIT and OFFSET
     $start_from = ($currentpage - 1) * $result_per_page;
     $sql = "SELECT * FROM `products` LIMIT $start_from, $result_per_page";
-    $result = mysqli_query($localhost, $sql) or die(mysqli_error($localhost));
+    $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 
     ?>
   </div>

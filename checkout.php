@@ -2,9 +2,9 @@
 ob_start();
 session_start();
 include("connections/localhost.php");
-if( !isset($_SESSION['email']) || !isset($_SESSION['totalCost']) || (int)$_SESSION['totalCost'] <= 0 ){
-	//KICK USER OUT OF THIS PAGE
-	header('categoryview.php');
+if (!isset($_SESSION['email']) || !isset($_SESSION['totalCost']) || (int)$_SESSION['totalCost'] <= 0) {
+    //KICK USER OUT OF THIS PAGE
+    header('categoryview.php');
 }
 global $name;
 $name = $_SESSION['name'];
@@ -17,37 +17,36 @@ $totalCost = $_SESSION['totalCost'];
 ?>
 <!doctype html>
 <html lang="en">
+
 <head>
-	<meta charset="utf-8">
-	<title>Gallan Fashion Store</title>
-	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style.css" type="text/css">	
-	<link rel="stylesheet" href="includes/payment.css" type="text/css">
-	<script type="application/javascript" src="includes/payment.js"></script>	
-<!--	<link rel="alternate stylesheet" href="includes/payment.css" type="text/css">-->
+    <meta charset="utf-8">
+    <title>Gallan Fashion Store</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="includes/payment.css" type="text/css">
+    <script type="application/javascript" src="includes/payment.js"></script>
+    <!--	<link rel="alternate stylesheet" href="includes/payment.css" type="text/css">-->
 </head>
 
 
 <?php include("includes/navbar.php"); ?>
 
 <body>
- 
- <style>
-	 *{
-		 font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
-	 }
-	
-</style>
 
- <div class="payment-title">
+    <style>
+        * {
+            font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+        }
+    </style>
+
+    <div class="payment-title">
         <h1>Payment Information</h1>
-	</div>
+    </div>
     <div class="container preload">
         <div class="creditcard">
             <div class="front">
                 <div id="ccsingle"></div>
-                <svg version="1.1" id="cardfront" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                    x="0px" y="0px" viewBox="0 0 750 471" style="enable-background:new 0 0 750 471;" xml:space="preserve">
+                <svg version="1.1" id="cardfront" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 750 471" style="enable-background:new 0 0 750 471;" xml:space="preserve">
                     <g id="Front">
                         <g id="CardBackground">
                             <g id="Page-1_1_">
@@ -108,8 +107,7 @@ $totalCost = $_SESSION['totalCost'];
                 </svg>
             </div>
             <div class="back">
-                <svg version="1.1" id="cardback" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                    x="0px" y="0px" viewBox="0 0 750 471" style="enable-background:new 0 0 750 471;" xml:space="preserve">
+                <svg version="1.1" id="cardback" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 750 471" style="enable-background:new 0 0 750 471;" xml:space="preserve">
                     <g id="Front">
                         <line class="st0" x1="35.3" y1="10.4" x2="36.7" y2="11" />
                     </g>
@@ -141,56 +139,55 @@ $totalCost = $_SESSION['totalCost'];
         </div>
     </div>
     <form action="<?php echo htmlspecialchars(($_SERVER['PHP_SELF'])); ?>" method="post">
-    <div class="form-container">
-        <div class="field-container">
-            <label for="name">Customer Name</label>
-            <input id="name" maxlength="20" type="text" value="<?php echo $name ?>" disabled>
-        </div>
-        <div class="field-container">
-            <label for="cardnumber">Card Number</label><span id="generatecard">USE ANY RANDOM DIGITS</span>
-            <input name="cardnumber" type="text"  onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" maxlength="16" inputmode="numeric" required>
-            <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink">
+        <div class="form-container">
+            <div class="field-container">
+                <label for="name">Customer Name</label>
+                <input id="name" maxlength="20" type="text" value="<?php echo $name ?>" disabled>
+            </div>
+            <div class="field-container">
+                <label for="cardnumber">Card Number</label><span id="generatecard">USE ANY RANDOM DIGITS</span>
+                <input name="cardnumber" type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" maxlength="16" inputmode="numeric" required>
+                <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
-            </svg>
+                </svg>
+            </div>
+            <div class="field-container">
+                <label for="expirationdate">Expiration (YEAR)</label>
+                <input name="expirationdate" type="number" min="<?php echo date_format(new DateTime(), "Y") ?>" max="2030" placeholder="20XX" required>
+            </div>
+            <div class="field-container">
+                <label for="securitycode">Security Code(CVV)</label>
+                <input id="securitycode" type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" value="123 (sample value)" pattern="[0-9]*" disabled>
+            </div>
         </div>
-        <div class="field-container">
-            <label for="expirationdate">Expiration (YEAR)</label>
-            <input name="expirationdate" type="number" min="2021" max="2030" placeholder="20XX" required> 
+
+        <div>
+            <button name="pay" type="submit" class="button-green">PAY &yen; <?php echo $totalCost ?> </button>
         </div>
-        <div class="field-container">
-            <label for="securitycode">Security Code(CVV)</label>
-            <input id="securitycode" type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" value="123 (sample value)"  pattern="[0-9]*" disabled>
-        </div>
-    </div>
-    
-    <div>
-	<button name="pay" type="submit" class="button-green">PAY &yen; <?php echo $totalCost ?> </button>
-		</div>
-	</form>
-	
-	<br>
-<hr>
-<br>
+    </form>
+
+    <br>
+    <hr>
+    <br>
 </body>
+
 </html>
 
 <div style="color: red; background-color: lightyellow" align="center">
-<?php
-	
-	if(isset($_POST['pay'])){
-		
-		$cardnumber = htmlspecialchars(strip_tags($_POST['cardnumber']));
-		
-		if(empty(trim($cardnumber))) exit("Cannot be empty");
-		
-		header("location:placeOrder.php");		
-		
-	}
-	
-	?>
+    <?php
+
+    if (isset($_POST['pay'])) {
+
+        $cardnumber = htmlspecialchars(strip_tags($_POST['cardnumber']));
+
+        if (empty(trim($cardnumber))) exit("Cannot be empty");
+
+        header("location:placeOrder.php");
+    }
+
+    ?>
 </div>
 <br>
 </body>
-</html>
 
+</html>
