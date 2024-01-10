@@ -33,7 +33,7 @@ session_start();
 
 
 				//Access granted! take me to Admin Dashboard.
-				header('location: viewOrders.php');
+				header('location: vieworders.php');
 			} else {
 				$msg = '<p style="color: red">Wrong username or password, Try Again!</p>';
 			}

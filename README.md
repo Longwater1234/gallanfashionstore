@@ -1,8 +1,21 @@
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=php" alt="Dev icons" />
+</p>
+
 # gallanfashionstore
 
 Simple PHP/MySQL Fashion e-commerce website with Admin Panel made with XAMPP. With very minimal CSS. Beginner friendly. (Online payment not implemented.)
 
 DEFAULT DATABASE NAME: **gallanshop**
+
+## Preview:
+<p align="center">
+  <img src="1.png" alt="Website" />
+  <img src="2.png" alt="Website" />
+  <img src="3.png" alt="Website" />
+  <img src="4.png" alt="Website" />
+</p>
+
 
 ## Quick Start:
 
