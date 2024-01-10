@@ -82,7 +82,17 @@ body .h-auto {
 	font-family: "Arial Black", "sans-serif";
 	height: 40px;
 	width: 200px;
+	cursor: pointer;
+	border-radius: 5px;
 }
+
+.button-large:hover {
+	transform: scale(1.02, 1.02);
+	transition: transform .4s;
+	color: chocolate;
+	background-color: white;
+}
+
 .button-green {
 	background-color: green;
 	color: #FFFFFF;
@@ -162,6 +172,8 @@ body .h-auto {
 	display: block;
 	justify-content: space-around;
 }
+
+
 
 /* ------------- PAYMENT STUFF! EXTERNAL ------------------------*/
 

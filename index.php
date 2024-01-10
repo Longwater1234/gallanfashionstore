@@ -15,30 +15,44 @@ include('connections/localhost.php');
 </head>
 
 <?php include("includes/navbar.php"); ?>
+
 <body>
-	<h1 class="h-orangee">Welcome to Gallan Fashion Store.
-<p>Feel free to explore our large collection of items.</p>
-<p>You won't regret shopping from us! </p>
-</h1>
+	<h1 class="h-orangee">Welcome to Gallan Fashion Store. <br>
+	Feel free to explore our large collection of items. <br>
+	You won't regret shopping from us!
+	</h1>
 
-<br>
-<br>
-<br>
+	<br>
+	<br>
+	<br>
 
+	<div class="button-large-div">
+		<?php 
+			if(!isset($_SESSION["email"])){ ?>
+				<a href="register.php" target="_self">
+					<button 
+						class="button-large"
+						title="Create Account">
+						Create Account
+					</button>
+				</a>
+				<br>
+				<br> 
+			<?php }
+		?>
 
-<div class="button-large-div">
-<?php 
-	if(!isset($_SESSION["email"])){
-echo '<a href="register.php" target="_self"><button class="button-large">Create Account</button></a>';
-echo "<br>";
-echo "<br>";
-	}
-	?>
-<a href="categories.php" target="_self"><button class="button-large">Browse our Collection</button></a>
-</div>
+		<a href="categories.php" target="_self">
+			<button 
+				class="button-large"
+				title="Browse our Collection">
+				Browse our Collection
+			</button>
+		</a>
 
-</br>
-</br>
+	</div>
+
+	</br>
+	</br>
 	<?php include("includes/footer.php"); ?>
 </body>
 </html>
