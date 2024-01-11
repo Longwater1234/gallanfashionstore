@@ -8,3 +8,6 @@
 		</a>
 	</p>
 </footer>
+
+</body>
+</html>

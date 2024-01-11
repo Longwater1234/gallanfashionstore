@@ -70,9 +70,6 @@
 	</div>
 	<br>
 
-
-	<?php include("includes/footer.php"); ?>
-
 	<script type="application/javascript">
 		function countChars() {
 			//for displaying number of characters left for Message
@@ -83,7 +80,5 @@
 		}
 	</script>
 
+	<?php include("includes/footer.php"); ?>
 
-</body>
-
-</html>

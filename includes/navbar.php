@@ -1,5 +1,3 @@
-<?php include('connections/localhost.php') ?>
-
 <nav class="navbar">
 	<a title="Home" href="index.php"><strong>Home</strong> </a>
 	<a title="Categories" href="categories.php"><strong>Categories</strong></a>
@@ -17,7 +15,7 @@
 		echo '<a href="myaccount.php"><strong>My Account</strong></a>';
 	?>
 		<a class="cart-icon" href="cart.php">
-			<img src="shopping-cart-icon.png">
+			<img src="img/shopping-cart-icon.png">
 			<strong>Cart (<?= $cartCount ?>)</strong>
 		</a>
 	<?php
@@ -27,7 +25,7 @@
 		//if  NOT logged in
 		echo '<a href="login.php" title="login"><strong>Log In</strong></a>';
 
-		echo '<a title="Cart" onClick="loginFirst()"><img src="shopping-cart-icon.png" class="cart-icon"><strong> Cart</strong></a>';
+		echo '<a title="Cart" onClick="loginFirst()"><img src="img/shopping-cart-icon.png" class="cart-icon"><strong> Cart</strong></a>';
 	}
 	?>
 

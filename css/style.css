@@ -19,6 +19,7 @@ nav {
 	position: sticky;
 	top: 0;
 	background-color: #fff;
+	z-index: 10;
 }
 nav a {
 	font-size: 18px;
@@ -126,23 +127,58 @@ body .h-auto {
 	font-size: 14px;
 	font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
 }
-.category {
-	margin-left: 240px;
-	margin-top: 40px;
-	text-align: center;
-}
-.cat1 {
+
+.categories {
 	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	background-color: #fff;
+	gap: 70px;
+	padding: 50px 100px 50px 100px;
+	align-items: center;
 }
-.cat1 a {
-	font-size: 18px;
+
+.category {
+	width: 300px;
+	text-align: center;	
+}
+
+.category a {
+	overflow: hidden;
+}
+
+.category-title {
 	text-decoration: none;
-	color: #574702;
+	background-color: chocolate;
+	color: #fff;
+	border-radius: 5px;
+	padding: 5px 20px;
+	display: inline-block;
+	z-index: 100;
+	margin-top: 20px;
+	transition: background-color 0.5s, color 0.5s, outline 0.5s, transform .5s;
 }
-.cat1 a:hover {
-	font-size: 25px;
-	text-decoration: underline;
-	text-decoration-style: dotted;
+
+.category-title:hover {
+	color: chocolate;
+	background-color: white;
+	outline: 1px solid chocolate;
+	transform: scale(1.05, 1.05);			
+}
+
+.category-img {
+	width: 100%;	
+	transition: transform .5s, opacity 0.5s; 
+}
+
+.category-img:hover {
+	opacity: .8;
+	transform: scale(1.05, 1.05);
+}
+
+.category-description {
+	margin-top: 15px;
 }
 
 .container-grid{
@@ -319,6 +355,3 @@ fieldset {
 :-ms-input-placeholder {
  color: darkgray;
 }
-
-
-

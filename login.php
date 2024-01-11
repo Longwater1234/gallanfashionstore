@@ -79,8 +79,4 @@ include('connections/localhost.php');
 		?>
 	</div>
 
-
 	<?php include("includes/footer.php"); ?>
-</body>
-
-</html>
