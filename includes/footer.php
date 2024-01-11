@@ -1,4 +1,4 @@
-<div class="footer">
+<footer class="footer">
 	<p> &copy; <?= date('Y') ?> MANZI GHILAIN. S/No. WS1805005. 
 		<a 
 			href="admin/adminlogin.php" 
@@ -7,4 +7,4 @@
 			Click here for Admin Login
 		</a>
 	</p>
-</div>
+</footer>

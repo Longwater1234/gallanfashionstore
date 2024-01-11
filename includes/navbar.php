@@ -1,13 +1,9 @@
-<?php
-include('connections/localhost.php');
-?>
-<!-- nav bar code-->
-<nav>
-	<br>
-	<a href="index.php"> <strong>Home</strong> </a>
-	<a href="categories.php"><strong>Categories</strong></a>
-	<a href="contact.php"><strong>Contact Us</strong></a>
+<?php include('connections/localhost.php') ?>
 
+<nav class="navbar">
+	<a title="Home" href="index.php"><strong>Home</strong> </a>
+	<a title="Categories" href="categories.php"><strong>Categories</strong></a>
+	<a title="Contact Us" href="contact.php"><strong>Contact Us</strong></a>
 
 	<?php
 	if (isset($_SESSION['email'])) {
@@ -20,23 +16,23 @@ include('connections/localhost.php');
 
 		echo '<a href="myaccount.php"><strong>My Account</strong></a>';
 	?>
-		<a class="cart-icon" href="cart.php"><img src="shopping-cart-icon.png" width="20px" height="20px">
-			<strong>Cart (<?= $cartCount ?>)</strong></a>
+		<a class="cart-icon" href="cart.php">
+			<img src="shopping-cart-icon.png">
+			<strong>Cart (<?= $cartCount ?>)</strong>
+		</a>
 	<?php
 
 		echo '<br> <br> <p class="wow">Logged in as: ' . $email . '</p>';
 	} else {
 		//if  NOT logged in
-		echo '<a href="login.php"><strong>Log In</strong></a>';
+		echo '<a href="login.php" title="login"><strong>Log In</strong></a>';
 
-		echo '<a class="cart-icon" onClick="loginFirst()"><img src="shopping-cart-icon.png" width="20px" height="20px"><strong>Cart</strong></a>';
+		echo '<a title="Cart" onClick="loginFirst()"><img src="shopping-cart-icon.png" class="cart-icon"><strong> Cart</strong></a>';
 	}
 	?>
 
 </nav>
 <!-- end of nav bar-->
-
-
 
 <script type="application/javascript">
 	function loginFirst() {

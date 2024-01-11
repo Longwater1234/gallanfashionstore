@@ -1,18 +1,4 @@
-<?php
-ob_start();
-session_start();
-include('connections/localhost.php');
-?>
-
-<!doctype html>
-<html>
-
-<head>
-	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Contact | Gallan Fashion Store</title>
-	<link href="style.css" rel="stylesheet" type="text/css">
-	<link href="contactStyle.css" rel="stylesheet" type="text/css">
-</head>
+<?php include("includes/header.php"); ?>
 
 <?php include("includes/navbar.php"); ?>
 
