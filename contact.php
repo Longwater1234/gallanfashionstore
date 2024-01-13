@@ -4,71 +4,81 @@
 
 <body>
 
-	<div class="msg">
-		<?php
-		// FOR HANDLING CONTACT FORM
-		function cleanInput($data)
-		{
-			//this PHP function to clean and sanitize our input data
-			$data = strip_tags(trim($data));
-			$data = htmlspecialchars($data);
-			$data = stripslashes($data);
-			return ($data);
-		}
+	<div class="contact">
+
+		<div class="msg">
+			<?php
+			// FOR HANDLING CONTACT FORM
+			function cleanInput($data)
+			{
+				//this PHP function to clean and sanitize our input data
+				$data = strip_tags(trim($data));
+				$data = htmlspecialchars($data);
+				$data = stripslashes($data);
+				return ($data);
+			}
 
 
-		if (isset($_POST['submit'])) {
-			global $conn;
+			if (isset($_POST['submit'])) {
+				global $conn;
 
-			$name = cleanInput($_POST['name']);
-			$email = cleanInput($_POST['email']);
-			$message = cleanInput($_POST['message']);
-
-
-			if (empty($name) || empty($email) || empty($message)) die("Must fill all fields");
-
-			filter_var($email, FILTER_VALIDATE_EMAIL) or die("Email not valid. Message not sent! ");
-
-			if (strlen($message) > 200) exit("Message must NOT be more than 200 characters");
+				$name = cleanInput($_POST['name']);
+				$email = cleanInput($_POST['email']);
+				$message = cleanInput($_POST['message']);
 
 
-			$name = mysqli_real_escape_string($conn, $name);
-			$email = mysqli_real_escape_string($conn, $email);
-			$message = mysqli_real_escape_string($conn, $message);
+				if (empty($name) || empty($email) || empty($message)) die("Must fill all fields");
 
-			$sendMsg = "INSERT INTO `contactus`( `name`, `email`, `message`, `date_posted`) VALUES ('$name', '$email', '$message', NOW())";
+				filter_var($email, FILTER_VALIDATE_EMAIL) or die("Email not valid. Message not sent! ");
 
-			if (mysqli_query($conn, $sendMsg)) {
-				echo "<script>alert('Message Sent!')</script>";
-				echo "<script>window.open('contact.php','_self')</script>";
-			} else
-				echo "Error:" . mysqli_error($conn);
-		}
+				if (strlen($message) > 200) exit("Message must NOT be more than 200 characters");
 
-		?>
+
+				$name = mysqli_real_escape_string($conn, $name);
+				$email = mysqli_real_escape_string($conn, $email);
+				$message = mysqli_real_escape_string($conn, $message);
+
+				$sendMsg = "INSERT INTO `contactus`( `name`, `email`, `message`, `date_posted`) VALUES ('$name', '$email', '$message', NOW())";
+
+				if (mysqli_query($conn, $sendMsg)) {
+					echo "<script>alert('Message Sent!')</script>";
+					echo "<script>window.open('contact.php','_self')</script>";
+				} else
+					echo "Error:" . mysqli_error($conn);
+			}
+
+			?>
+		</div>
+
+		<!--	the contact form-->
+		<div class="contact-container">
+			<form id="contact" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
+				<h3>Contact Form</h3>
+				<h4>Write to us if you have any questions</h4>
+				<fieldset>
+					<input name="name" placeholder="Your name (required)" type="text" tabindex="1" maxlength="20" required autofocus>
+				</fieldset>
+				<fieldset>
+					<input name="email" placeholder="Your Email Address (required)" type="email" maxlength="50" tabindex="2" required>
+				</fieldset>
+				<fieldset>
+					<textarea name="message" id="messageInput" placeholder="Type your message here...." maxlength="200" onKeyUp="countChars()" tabindex="5" required></textarea>
+				</fieldset>
+				<p align="right" id="charLeft">200 characters left</p>
+				<fieldset>
+					<button
+						name="submit"
+						type="submit"
+						id="contact-submit"
+						title="Send Message">
+						Send Message
+					</button>
+				</fieldset>
+			</form>
+		</div>
+		
 	</div>
 
-	<!--	the contact form-->
-	<div class="container">
-		<form id="contact" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
-			<h3>Contact Form</h3>
-			<h4>Write to us if you have any questions</h4>
-			<fieldset>
-				<input name="name" placeholder="Your name (required)" type="text" tabindex="1" maxlength="20" required autofocus>
-			</fieldset>
-			<fieldset>
-				<input name="email" placeholder="Your Email Address (required)" type="email" maxlength="50" tabindex="2" required>
-			</fieldset>
-			<fieldset>
-				<textarea name="message" id="messageInput" placeholder="Type your message here...." maxlength="200" onKeyUp="countChars()" tabindex="5" required></textarea>
-			</fieldset>
-			<p align="right" id="charLeft">200 characters left</p>
-			<fieldset>
-				<button name="submit" type="submit" id="contact-submit">Send Message</button>
-			</fieldset>
-		</form>
-	</div>
-	<br>
 
 	<script type="application/javascript">
 		function countChars() {
