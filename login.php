@@ -1,20 +1,51 @@
-<?php
-ob_start();
-session_start();
-include('connections/localhost.php');
+<?php include("includes/header.php") ?>
 
-?>
-
-<?php include("includes/header.php");
-?>
-
-<?php include("includes/navbar.php");
-?>
+<?php include("includes/navbar.php") ?>
 
 <body>
-	<h1 class="h-auto" align="center">User Login</h1>
+
+ 	<div class="contact">
+		<div class="contact-container">
+			<form id="contact" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
+				<h3>User Login</h3>
+
+				<fieldset>
+					<label for="email">Email</label>
+					<input name="email" type="text" height="30" id="email" maxlength="30" required placeholder="Enter email">
+				</fieldset>
+
+				<fieldset>
+					<label for="password">Password</label>
+					<input name="password" type="password" id="password" height="30" maxlength="30" placeholder="enter password" required>
+				</fieldset>
+
+				<fieldset>
+					<button
+						name="submit"
+						type="submit"
+						id="contact-submit"
+						title="Submit">
+						Submit
+					</button>
+				</fieldset>				
+
+				<p>Dont have an account? <a href="register.php">Register here</a>.</p>
+				
+			</form>
+
+		</div>
+	</div>
+
+
+
+
+
+
+
+
 	<!-- start of form-->
-	<div class="form">
+<!-- 	<h1 class="h-auto" align="center">User Login</h1>
+ 	<div class="form">
 		<form action="login.php" method="post" enctype="multipart/form-data">
 			<div align="center">
 				<label for="email">Your email</label>
@@ -31,7 +62,7 @@ include('connections/localhost.php');
 			</div>
 		</form>
 		<p>Dont have an account? <a href="register.php">Register here</a>.</p>
-	</div>
+	</div> -->
 	<!-- end of form-->
 	
 	<div class="msg">
